@@ -15,6 +15,7 @@ buildscript {
 }
 plugins {
     id 'org.spongepowered.plugin' version '0.8.1'
+    id 'org.spongepowered.event-impl-gen' version '5.0.2'
 }
 
 group = pluginGroup
@@ -39,7 +40,6 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 shadowJar {
     classifier = 'shaded'
-    from sourceSets.ap.output
 }
 
 artifacts {

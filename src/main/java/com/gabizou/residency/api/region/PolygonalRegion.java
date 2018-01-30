@@ -10,4 +10,8 @@ public interface PolygonalRegion<P extends PolygonalRegion<P>> extends Region.Ex
 
     P setPoints(Iterable<Vector3i> points);
 
+
+    interface Builder<C extends PolygonalRegion, B extends PolygonalRegion.Builder<C, B>> extends Region.Expandable.Builder<C, B> {
+
+    }
 }

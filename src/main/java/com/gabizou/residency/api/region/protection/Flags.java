@@ -2,10 +2,13 @@ package com.gabizou.residency.api.region.protection;
 
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +27,9 @@ public final class Flags {
     public static final Flag<Text> CHANNEL_PREFIX = DummyObjectProvider.createExtendedFor(Flag.class, "CHAT_PREFIX");
     public static final Flag<List<ItemType>> ITEM_BLACKLIST = DummyObjectProvider.createExtendedFor(Flag.class, "ITEM_BLACKLIST");
     public static final Flag<List<ItemType>> ITEM_WHITELIST = DummyObjectProvider.createExtendedFor(Flag.class, "ITEM_WHITELIST");
-    public static final Flag<List<String>>
+    public static final Flag<List<String>> COMMAND_WHITELIST = DummyObjectProvider.createExtendedFor(Flag.class, "COMMAND_WHITELIST");
+    public static final Flag<List<String>> COMMAND_BLACKLIST = DummyObjectProvider.createExtendedFor(Flag.class, "COMMAND_BLACKLIST");
+    public static final Flag<TextColor> CHANNEL_COLOR = DummyObjectProvider.createExtendedFor(Flag.class, "CHANNEL_COLOR");
     // sortfields:OFF
 
     private Flags() {

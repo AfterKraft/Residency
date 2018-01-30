@@ -2,6 +2,7 @@ package com.gabizou.residency.api.membership;
 
 import org.spongepowered.api.entity.living.player.User;
 
+import java.util.Collection;
 import java.util.UUID;
 
 public interface Membership {
@@ -31,5 +32,11 @@ public interface Membership {
     Membership addAll(Membership membership);
 
     Membership removeAll(Membership membership);
+
+    Collection<User> getPlayers();
+
+    Collection<String> getPlayerNames();
+
+    Collection<UUID> getPlayerIds();
 
 }

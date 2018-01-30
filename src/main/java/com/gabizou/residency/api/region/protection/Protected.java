@@ -1,7 +1,5 @@
 package com.gabizou.residency.api.region.protection;
 
-import com.gabizou.residency.api.membership.Membership;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 
 import java.util.Map;
@@ -9,38 +7,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface Protected<P extends Protected<P>> extends Area<P> {
-
-    Membership getOwners();
-
-    P setOwners(Membership membership);
-
-    Membership getMembers();
-
-    P setMembers(Membership membership);
-
-    default boolean isOwner(User user) {
-        return getOwners().contains(user);
-    }
-
-    default boolean isOwner(String name) {
-        return getOwners().contains(name);
-    }
-
-    default boolean isOwner(UUID uuid) {
-        return getOwners().contains(uuid);
-    }
-
-    default boolean isMember(User user) {
-        return getMembers().contains(user);
-    }
-
-    default boolean isMember(String name) {
-        return getMembers().contains(name);
-    }
-
-    default boolean isMember(UUID uuid) {
-        return getMembers().contains(uuid);
-    }
 
     <T> Optional<T> getFlag(Flag<T> flag);
 
@@ -60,11 +26,23 @@ public interface Protected<P extends Protected<P>> extends Area<P> {
 
     <T> P setFlag(Flag<T> flag, T value, String playerContext);
 
+    interface Builder<P extends Protected<P>, B extends Builder<P, B>> extends Area.Builder<P, B> {
+
+    }
+
     interface Cuboid<P extends Cuboid<P>> extends Protected<P>, Area.Cuboid<P> {
 
+
+        interface Builder<P extends Cuboid<P>, B extends Cuboid.Builder<P, B>> extends Area.Cuboid.Builder<P, B> {
+
+        }
     }
 
     interface Polygonal<P extends Polygonal<P>> extends Protected<P>, Area.Polygonal<P> {
 
+
+        interface Builder<P extends Polygonal<P>, B extends Builder<P, B>> extends Area.Polygonal.Builder<P, B> {
+
+        }
     }
 }
