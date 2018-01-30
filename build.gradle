@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        maven {
+            name = 'gradle-plugins'
+            url = 'https://plugins.gradle.org/m2'
+        }
+    }
+
+    dependencies {
+        classpath 'gradle.plugin.net.minecrell:licenser:0.3'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
+        classpath 'gradle.plugin.org.spongepowered:spongegradle:0.8.1'
+        classpath 'gradle.plugin.org.spongepowered:event-impl-gen:5.0.2'
+    }
+}
+plugins {
+    id 'org.spongepowered.plugin' version '0.8.1'
+}
+
+group = pluginGroup
+version = pluginVersion
+
+dependencies {
+    compile 'org.spongepowered:spongeapi:7.0.0'
+}
+
+genEventImpl {
+    outputFactory = 'com.gabizou.residency.api.event.ResidencyEventFactory'
+
+    include 'com/gabizou/residency/api/event/*/**/*'
+    exclude 'com/gabizou/residency/api/event/cause/'
+    exclude 'com/gabizou/residency/event/impl/'
+}
+
+sponge.plugin.id = pluginId
+
+// Shaded API build (with all dependencies included)
+apply plugin: 'com.github.johnrengelman.shadow'
+
+shadowJar {
+    classifier = 'shaded'
+    from sourceSets.ap.output
+}
+
+artifacts {
+    archives shadowJar
+}
+
